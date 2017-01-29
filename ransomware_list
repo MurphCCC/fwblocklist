@@ -1,1 +1,6 @@
+#!/bin/bash
 
+# Grab the latest list of known Ransomware server urls, parse it and spit it out to a text file.  
+# Currently using this in a Custom smoothwall category.
+
+curl https://ransomwaretracker.abuse.ch/downloads/RW_URLBL.txt | awk -F"/" -v OFS=/ '{print $1,$2,$3,""}' | sort | uniq >> ransomware.txt
